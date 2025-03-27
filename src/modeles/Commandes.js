@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Produit_panier = require("../Modeles/produit_panier");
+const Produit_panier = require("../Modeles/ProduitPaniergit ");
 
 const Commande = sequelize.define("Commande", {
     idcommande: {
