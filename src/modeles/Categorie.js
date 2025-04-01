@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize'); 
 const sequelize = require('../config/database')
 
-const Catgorie = sequelize.define('Categorie',
+const Categorie = sequelize.define('Categorie',
 { 
-  id : {type: DataTypes.STRING, allowNull : false},
+  idCategorie : {type: DataTypes.STRING, primaryKey : true},
   nom: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: false },
   image: { type: DataTypes.STRING, allowNull: false }
