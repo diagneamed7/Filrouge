@@ -1,41 +1,25 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
-const Commande = require("../Modeles/Commandes");
+module.exports = (sequelize, DataTypes) => {
+  const Paiement = sequelize.define("Paiement", {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    commandeId: { type: DataTypes.INTEGER, allowNull: false },
+    montant: { type: DataTypes.FLOAT, allowNull: false },
+    methode: {
+      type: DataTypes.ENUM("carte", "paypal", "virement"),
+      allowNull: false,
+    },
+    statut: {
+      type: DataTypes.ENUM("en_attente", "payé", "échoué", "remboursé"),
+      defaultValue: "en_attente",
+    },
+    transactionId: { type: DataTypes.STRING }, // Référence Stripe/PayPal
+  });
 
-const Paiement = sequelize.define("Paiement", {
-  idpaiement: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  somme_payee: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-  },
-  methode_paiement: {
-    type: DataTypes.STRING,
-    allowNull: false,
-   
-  },
-  statut_paiement: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  idcommande: {  
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'Commandes',
-      key: 'idcommande'
-    }
-  }
-});
+  Paiement.associate = (models) => {
+    Paiement.belongsTo(models.Commande, {
+      foreignKey: "commandeId",
+      as: "commande",
+    });
+  };
 
-// Relation
-Paiement.belongsTo(Commande, {
-  foreignKey: "idcommande",
-  as: "commande",
-});
-Commande.hasMany(Paiement, { foreignKey: "idpaiement", as: "paiements" });
-
-module.exports = Paiement;
+  return Paiement;
+};

@@ -4,6 +4,11 @@ const Panier = require('./Panier');
 const Produit = require('./Produit');
 
 const ProduitPanier = sequelize.define('ProduitPanier', {
+    idProduitPanier: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     IDpanier: { 
         type: DataTypes.INTEGER, 
         references: { model: Panier, key: 'id_panier' }
@@ -22,7 +27,7 @@ const ProduitPanier = sequelize.define('ProduitPanier', {
         allowNull: false 
     }
 }, {
-    tableName: 'produit_panier',
+    tableName: 'ProduitPanier',
     timestamps: false
 });
 
