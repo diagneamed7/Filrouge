@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Panier = sequelize.define('Panier', {
-    id_panier: { 
+    idPanier: { 
         type: DataTypes.INTEGER, 
         autoIncrement: true, 
         primaryKey: true 
@@ -18,3 +18,4 @@ const Panier = sequelize.define('Panier', {
 });
 
 module.exports = Panier;
+

@@ -2,8 +2,9 @@ const express = require('express');
 const sequelize = require('./src/config/database');
 const categorieRoutes = require('./src/routes/CategorieRoutes.js');
 const produitRoutes = require('./src/routes/ProduitRoutes.js');
-const commandeRoutes = require('./src/routes/CommandeRoutes');
-const paiementRoutes = require('./src/routes/PaiementRoutes');
+const panierRoutes = require ('./src/routes/PanierRoutes.js');
+const produitPanierRoutes = require ('./src/routes/ProduitPanierRoutes.js');
+
 
 const app = express();
 app.use(express.json());
@@ -16,10 +17,9 @@ sequelize.sync({ force: false })
 // Utilisation des routes
 app.use('/categories', categorieRoutes);
 app.use('/produits', produitRoutes);
-app.use('/api/commandes', commandeRoutes);
-app.use('/api', paiementRoutes);
+app.use('/panier', panierRoutes);
+app.use('/produitPanier', produitPanierRoutes);
 
-app.use("/uploads", express.static("uploads"));
 
 // Démarrage du serveur
 const PORT = 3000;

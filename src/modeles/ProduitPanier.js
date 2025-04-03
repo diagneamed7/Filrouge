@@ -4,38 +4,54 @@ const Panier = require('./Panier');
 const Produit = require('./Produit');
 
 const ProduitPanier = sequelize.define('ProduitPanier', {
+
     idProduitPanier: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    IDpanier: { 
+    idPanier: { 
         type: DataTypes.INTEGER, 
-        references: { model: Panier, key: 'id_panier' }
+        allowNull: false,
+        references: { 
+            model: Panier, 
+            key: 'idPanier' 
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
     },
-    IDproduit: { 
-        type: DataTypes.INTEGER, 
-        references: { model: Produit, key: 'id_produit' }
+    idProduit: { 
+        type: DataTypes.STRING,  // ✅ Changement du type pour correspondre à `idProduit`
+        allowNull: false,
+        references: { 
+            model: Produit, 
+            key: 'idProduit'  // ✅ Correction pour correspondre au nom exact dans `Produit`
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
     },
     quantite: { 
         type: DataTypes.INTEGER, 
         allowNull: false, 
         defaultValue: 1 
     },
-    prix_unitaire: { 
+    prixUnitaire: { 
         type: DataTypes.FLOAT, 
         allowNull: false 
     }
 }, {
-    tableName: 'ProduitPanier',
+
+    tableName: 'produitPanier',
     timestamps: false
 });
 
-// Définition des relations
-Panier.hasMany(ProduitPanier, { foreignKey: 'IDpanier', as: 'produits' });
-ProduitPanier.belongsTo(Panier, { foreignKey: 'IDpanier', as: 'panier' });
+// 🔗 Définition des relations
+Panier.hasMany(ProduitPanier, { foreignKey: 'idPanier' });
+ProduitPanier.belongsTo(Panier, { foreignKey: 'idPanier' });
 
-Produit.hasMany(ProduitPanier, { foreignKey: 'IDproduit', as: 'paniers' });
-ProduitPanier.belongsTo(Produit, { foreignKey: 'IDproduit', as: 'produit' });
+Produit.hasMany(ProduitPanier, { foreignKey: 'idProduit' });
+ProduitPanier.belongsTo(Produit, { foreignKey: 'idProduit' });
 
 module.exports = ProduitPanier;
+
+
