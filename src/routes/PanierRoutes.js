@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const panierController = require('../controllers/CategorieController');
+const panierController = require('../controllers/PanierController');
 
 // Obtenir tous les paniers
 router.get('/', panierController.getAll);

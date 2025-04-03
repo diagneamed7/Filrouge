@@ -5,16 +5,16 @@ class ProduitPanierRepository {
         return await ProduitPanier.create(data);
     }
 
-    async getProduitsByPanier(id_panier) {
-        return await ProduitPanier.findAll({ where: { IDpanier: id_panier } });
+    async getProduitsByPanier(idPanier) {
+        return await ProduitPanier.findAll({ where: { idPanier: idPanier } });
     }
 
-    async updateProduitPanier(IDpanier, IDproduit, data) {
-        return await ProduitPanier.update(data, { where: { IDpanier, IDproduit } });
+    async updateProduitPanier(idPanier, idProduit, data) {
+        return await ProduitPanier.update(data, { where: { idPanier, idProduit } });
     }
 
-    async deleteProduitPanier(IDpanier, IDproduit) {
-        return await ProduitPanier.destroy({ where: { IDpanier, IDproduit } });
+    async deleteProduitPanier(idPanier, idProduit) {
+        return await ProduitPanier.destroy({ where: { idPanier, idProduit } });
     }
 }
 
