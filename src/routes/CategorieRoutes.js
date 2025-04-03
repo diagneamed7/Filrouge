@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require("../middleware/multer");
 const categorieController = require('../controllers/CategorieController');
 
 // Obtenir toutes les catégories
@@ -9,7 +10,7 @@ router.get('/', categorieController.getAll);
 router.get('/:id', categorieController.getById);
 
 // Créer une nouvelle catégorie
-router.post('/', categorieController.create);
+router.post('/', upload.single("image"), categorieController.create);
 
 // Modifier une catégorie existante
 router.put('/:id', categorieController.update);

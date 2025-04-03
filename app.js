@@ -18,6 +18,9 @@ app.use('/categories', categorieRoutes);
 app.use('/produits', produitRoutes);
 app.use('/api/commandes', commandeRoutes);
 app.use('/api', paiementRoutes);
+
+app.use("/uploads", express.static("uploads"));
+
 // Démarrage du serveur
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Serveur démarré sur http://localhost:${PORT}`));
