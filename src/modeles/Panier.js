@@ -18,3 +18,4 @@ const Panier = sequelize.define('Panier', {
 });
 
 module.exports = Panier;
+
