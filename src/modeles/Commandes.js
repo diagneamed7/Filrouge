@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Produit_panier = require("../Modeles/ProduitPaniergit ");
-
+const ProduitPanier = require("../modeles/ProduitPanier");
 const Commande = sequelize.define("Commande", {
     idcommande: {
         type: DataTypes.INTEGER,
@@ -16,20 +15,20 @@ const Commande = sequelize.define("Commande", {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
     },
-    idproduit_panier: {  // Clé étrangère vers Commande
+    idproduitPanier: {  // Clé étrangère vers Commande
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'produit_panier',
-          key: 'idproduit_panier'
+          model: 'ProduitPanier',
+          key: 'idProduitPanier'
         }
       }
 });
 
 // Relation
-Commande.belongsTo(Produit_panier, {
-    foreignKey: "idProduit_panier",
-    as: "produit_panier",
+Commande.belongsTo(ProduitPanier, {
+    foreignKey: "idProduitPanier",
+    as: "ProduitPanier",
 });
-Produit_panier.hasMany(Commande, { foreignKey: "idcommande", as: "Commande" });
-module.exports = Commandes;
+ProduitPanier.hasMany(Commande, { foreignKey: "idcommande", as: "Commande" });
+module.exports = Commande;

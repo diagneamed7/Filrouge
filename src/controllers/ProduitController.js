@@ -21,11 +21,27 @@ class ProduitController {
 
     async create(req, res) {
         try {
-            const produit = await produitService.create(req.body);
-            res.status(201).json(produit);
-        } catch (error) {
-            res.status(400).json({ error: error.message });
-        }
+                    const { idProduit, nom, description, prix, stock, idCategorie } = req.body;
+                    const image = req.file ? req.file.filename : null;
+            
+                    if (!image) {
+                        return res.status(400).json({ error: "L'image est obligatoire" });
+                    }
+            
+                    const newCategorie = await produitService.create({
+                        idProduit,
+                        nom,
+                        description,
+                        prix,
+                        stock,
+                        image, // Enregistre le nom de l'image
+                        idCategorie
+                    });
+            
+                    res.status(201).json(newCategorie);
+                } catch (error) {
+                    res.status(500).json({ error: error.message });
+                }
     }
 
     async update(req, res) {

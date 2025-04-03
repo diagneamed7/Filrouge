@@ -4,10 +4,11 @@ const Panier = require('./Panier');
 const Produit = require('./Produit');
 
 const ProduitPanier = sequelize.define('ProduitPanier', {
-    idProduitPanier: {  // Ajout d'une clé primaire
+
+    idProduitPanier: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     idPanier: { 
         type: DataTypes.INTEGER, 
@@ -39,6 +40,7 @@ const ProduitPanier = sequelize.define('ProduitPanier', {
         allowNull: false 
     }
 }, {
+
     tableName: 'produitPanier',
     timestamps: false
 });

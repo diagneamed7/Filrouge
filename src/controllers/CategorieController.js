@@ -21,10 +21,23 @@ class CategorieController {
 
     async create(req, res) {
         try {
-            const categorie = await CategorieService.create(req.body);
-            res.status(201).json(categorie);
+            const { idCategorie, nom, description } = req.body;
+            const image = req.file ? req.file.filename : null;
+    
+            if (!image) {
+                return res.status(400).json({ error: "L'image est obligatoire" });
+            }
+    
+            const newCategorie = await CategorieService.create({
+                idCategorie,
+                nom,
+                description,
+                image // Enregistre le nom de l'image
+            });
+    
+            res.status(201).json(newCategorie);
         } catch (error) {
-            res.status(400).json({ error: error.message });
+            res.status(500).json({ error: error.message });
         }
     }
 
