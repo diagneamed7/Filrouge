@@ -4,22 +4,22 @@ const Panier = require('./Panier');
 const Produit = require('./Produit');
 
 const ProduitPanier = sequelize.define('ProduitPanier', {
-    id: {  // Ajout d'une clé primaire
+    idProduitPanier: {  // Ajout d'une clé primaire
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    IDpanier: { 
+    idPanier: { 
         type: DataTypes.INTEGER, 
         allowNull: false,
         references: { 
             model: Panier, 
-            key: 'id_panier' 
+            key: 'idPanier' 
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
     },
-    IDproduit: { 
+    idProduit: { 
         type: DataTypes.STRING,  // ✅ Changement du type pour correspondre à `idProduit`
         allowNull: false,
         references: { 
@@ -34,21 +34,21 @@ const ProduitPanier = sequelize.define('ProduitPanier', {
         allowNull: false, 
         defaultValue: 1 
     },
-    prix_unitaire: { 
+    prixUnitaire: { 
         type: DataTypes.FLOAT, 
         allowNull: false 
     }
 }, {
-    tableName: 'produit_panier',
+    tableName: 'produitPanier',
     timestamps: false
 });
 
 // 🔗 Définition des relations
-Panier.hasMany(ProduitPanier, { foreignKey: 'IDpanier' });
-ProduitPanier.belongsTo(Panier, { foreignKey: 'IDpanier' });
+Panier.hasMany(ProduitPanier, { foreignKey: 'idPanier' });
+ProduitPanier.belongsTo(Panier, { foreignKey: 'idPanier' });
 
-Produit.hasMany(ProduitPanier, { foreignKey: 'IDproduit' });
-ProduitPanier.belongsTo(Produit, { foreignKey: 'IDproduit' });
+Produit.hasMany(ProduitPanier, { foreignKey: 'idProduit' });
+ProduitPanier.belongsTo(Produit, { foreignKey: 'idProduit' });
 
 module.exports = ProduitPanier;
 

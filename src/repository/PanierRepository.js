@@ -18,7 +18,7 @@ class PanierRepository {
     }
 
     async deletePanier(id) {
-        return await Panier.destroy({ where: { id_panier: id } });
+        return await Panier.destroy({ where: { idPanier: id } });
     }
 }
 

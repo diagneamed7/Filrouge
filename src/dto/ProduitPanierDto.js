@@ -1,5 +1,6 @@
 class ProduitPanierDTO {
-    constructor(IDpanier, IDproduit, quantite, prix_unitaire) {
+    constructor(idProduitPanier,IDpanier, IDproduit, quantite, prix_unitaire) {
+        this.idProduitPanier = idProduitPanier;
         this.IDpanier = IDpanier;
         this.IDproduit = IDproduit;
         this.quantite = quantite;

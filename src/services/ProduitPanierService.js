@@ -8,7 +8,7 @@ class ProduitPanierService {
     }
 
     async addProduit(data) {
-        if (!data.IDpanier || !data.IDproduit || !data.quantite || !data.prix_unitaire) {
+        if (!data.idPanier || !data.idProduit || !data.quantite || !data.prixUnitaire) {
             throw new Error("Tous les champs sont obligatoires");
         }
         const produit = await produitPanierRepository.addProduitToPanier(data);
