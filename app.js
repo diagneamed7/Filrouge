@@ -16,9 +16,10 @@ sequelize.sync({ force: false })
 
 // Utilisation des routes
 app.use('/categories', categorieRoutes);
-app.use('/produits', produitRoutes);
 app.use('/panier', panierRoutes);
 app.use('/produitPanier', produitPanierRoutes);
+app.use('/produits', produitRoutes);
+app.use("/uploads", express.static("uploads"));
 
 
 // Démarrage du serveur

@@ -4,7 +4,7 @@ const path = require("path");
 // Définir le stockage des fichiers
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "../uploads"); // Dossier où seront stockées les images
+        cb(null, "./src/uploads/"); // Dossier où seront stockées les images
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname)); // Nom unique

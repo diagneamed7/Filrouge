@@ -28,7 +28,7 @@ class ProduitController {
                         return res.status(400).json({ error: "L'image est obligatoire" });
                     }
             
-                    const newCategorie = await CategorieService.create({
+                    const newCategorie = await produitService.create({
                         idProduit,
                         nom,
                         description,
