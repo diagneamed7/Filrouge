@@ -4,7 +4,7 @@ const ProduitPanierService = require('../services/ProduitPanierService');
 class CommandeService {
     constructor() {
         this.commandeRepo = new CommandeRepository();
-        this.produitPanierService = new ProduitPanierService();
+        this.produitPanierService = ProduitPanierService;
     }
 
     async createCommande(commandeData) {
@@ -120,4 +120,4 @@ class CommandeService {
 
 
 }
-module.exports = new CommandeService();    
+module.exports =  CommandeService;    

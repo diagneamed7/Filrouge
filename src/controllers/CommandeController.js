@@ -1,5 +1,5 @@
 const CommandeService = require('../services/CommandeService');
-const CommandeDto = require('../dtos/CommandeDto');
+const CommandeDto = require('../dto/CommandeDto');
 
 class CommandeController {
     constructor() {

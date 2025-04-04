@@ -1,5 +1,6 @@
-const Commande = require("../Modeles/Commandes");
-const ProduitPanier = require("../Modeles/ProduitPanier");
+
+const Commande = require('../modeles/Commandes');
+const ProduitPanier = require('../modeles/ProduitPanier');
 
 class CommandeRepository {
     async create(data) {
@@ -42,4 +43,4 @@ class CommandeRepository {
     }
 }
 
-module.exports = new CommandeRepository();
+module.exports =  CommandeRepository;
