@@ -5,6 +5,8 @@ const produitRoutes = require('./src/routes/ProduitRoutes.js');
 const panierRoutes = require ('./src/routes/PanierRoutes.js');
 const produitPanierRoutes = require ('./src/routes/ProduitPanierRoutes.js');
 const commandeRoutes = require('./src/routes/CommandeRoutes.js');
+const userRoutes = require('./src/routes/UserRoutes.js');
+const abonnementRoutes = require('./src/routes/AbonnementRoutes.js');
 
 const app = express();
 app.use(express.json());
@@ -21,6 +23,10 @@ app.use('/produitPanier', produitPanierRoutes);
 app.use('/produits', produitRoutes);
 app.use("/uploads", express.static("uploads"));
 app.use("/commandes",commandeRoutes);
+app.use("/user",userRoutes);
+app.use("/abonnement",abonnementRoutes);
+
+
 
 // Démarrage du serveur
 const PORT = 3000;
